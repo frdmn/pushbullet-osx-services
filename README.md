@@ -13,7 +13,7 @@ OS X services that allows you to quickly push stuff (selected text or files in F
 
 ### Requirements
 
-* OS X ¯\\_(ツ)_/¯
+* OS X ¯\\\_(ツ)\_/¯
 
 ### Installation
 
