@@ -1,7 +1,7 @@
 Pushbullet OS X services
 ========================
 
-OS X services that allows you to quickly push stuff (selected text or files in Finder) to Pushbullet via the native context menu (Rightclick -> Services).
+OS X services that allows you to quickly push stuff (selected text or files in Finder) to [Pushbullet](https://www.pushbullet.com/) via the native context menu (Rightclick -> Services).
 
 * `Send selection to Pushbullet.workflow`: Push the selected text to all of your Devices
 
