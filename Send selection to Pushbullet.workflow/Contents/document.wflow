@@ -74,7 +74,7 @@ fi
 APIKEY=$(cat ~/.pushbullet_apikey)
 
 # If API key is not 45 characters 
-if [[ ${#APIKEY} != 45 ]]; then
+if [[ ${#APIKEY} &lt; 32 || ${#APIKEY} &gt; 45 ]]; then
 	ERROR="[pushbullet-selection] Error: Couldn't find a proper API key (32 characters) in \"~/.pushbullet_apikey\""
 	echo "${ERROR}" &amp;&amp; syslog -s -l error "${ERROR}"
 	exit 1
