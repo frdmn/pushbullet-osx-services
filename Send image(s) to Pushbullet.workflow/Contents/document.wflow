@@ -71,12 +71,31 @@ fi
 
 # Read API key
 APIKEY=$(cat ~/.pushbullet_apikey)
+KEYCHECKFILE="/tmp/.pushbullet_apikeycheck"
 
-# If API key is not 45 characters 
-if [[ ${#APIKEY} &lt; 32 || ${#APIKEY} &gt; 45 ]]; then
-	ERROR="[pushbullet-image] Error: Couldn't find a proper API key (between 32 and 45 characters) in \"~/.pushbullet_apikey\""
-	echo "${ERROR}" &amp;&amp; syslog -s -l error "${ERROR}"
-	exit 1
+# Check for valid API key 
+if [[ ! -f ${KEYCHECKFILE} ]]; then
+	# Return info message to syslog
+	ALERT="[pushbullet-image] Alert: No API key check since last reboot. Verifying API key ..."
+	echo "${ALERT}" &amp;&amp; syslog -s -l alert "${ALERT}"
+
+	# Fire call and store response
+	CHECKRESPONSE=$(curl -u ${APIKEY}: https://api.pushbullet.com/v2/users/me 2&gt;/dev/null)
+	# Parse JSON response
+	IDENTIY=$(echo $CHECKRESPONSE | python -c 'import json,sys;obj=json.load(sys.stdin);print obj["iden"]')
+
+	# If empty, return error and exit
+	if [[ -z ${IDENTIY} ]]; then
+		ERROR="[pushbullet-image] Error: Apparently not a valid API key. Please double check \"~/.pushbullet_apikey\"."
+		echo "${ERROR}" &amp;&amp; syslog -s -l error "${ERROR}"
+		exit 1
+	else
+		# Not empty, finish check ...
+		ALERT="[pushbullet-image] Alert: No API key check since last reboot. Verifying API key ..."
+		echo "${ALERT}" &amp;&amp; syslog -s -l alert "${ALERT}"
+		#  ... and write parsed API response element into $KEYCHECKFILE
+		echo ${IDENTIY} &gt; ${KEYCHECKFILE}
+	fi
 fi
 
 # For each selected file
