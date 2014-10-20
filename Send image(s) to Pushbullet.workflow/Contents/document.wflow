@@ -64,7 +64,7 @@ COMPUTERNAME=$(scutil --get LocalHostName)
 
 # Check for API key file
 if [[ ! -f ~/.pushbullet_apikey ]]; then
-	ERROR="[pushbullet-selection] Error: Couldn't locate API key file \"~/.pushbullet_apikey\""
+	ERROR="[pushbullet-image] Error: Couldn't locate API key file \"~/.pushbullet_apikey\""
 	echo "${ERROR}" &amp;&amp; syslog -s -l error "${ERROR}"
 	exit 1
 fi
