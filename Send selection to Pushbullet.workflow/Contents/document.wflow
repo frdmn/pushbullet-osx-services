@@ -92,7 +92,7 @@ if [[ ! -f ${KEYCHECKFILE} ]]; then
 		exit 1
 	else
 		# Not empty, finish check ...
-		ALERT="[pushbullet-image] Alert: No API key check since last reboot. Verifying API key ..."
+		ALERT="[pushbullet-image] Info: API successfully validated"
 		echo "${ALERT}" &amp;&amp; syslog -s -l alert "${ALERT}"
 		#  ... and write parsed API response element into $KEYCHECKFILE
 		echo ${IDENTIY} &gt; ${KEYCHECKFILE}
