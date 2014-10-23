@@ -20,7 +20,9 @@ OS X services that allows you to quickly push stuff (selected text or files in F
 1. Download the workflows via [GitHub releases](https://github.com/frdmn/pushbullet-osx-services/releases)
 2. Install by double click on the downloaded files
 3. Create Pushbullet API key file:  
-  `echo <API-key> > ~/.pushbullet_apikey`
+  `echo "<API-key>" > ~/.pushbullet_apikey`
+4. Last but not least: try out the service via:  
+  `Right click -> Services`
 
 You can find your API key in the [Account settings](https://www.pushbullet.com/account) while logged into Pushbullet.
 
