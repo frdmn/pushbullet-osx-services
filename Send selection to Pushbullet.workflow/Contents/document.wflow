@@ -74,7 +74,7 @@ fi
 APIKEY=$(cat ~/.pushbullet_apikey)
 KEYCHECKFILE="/tmp/.pushbullet_apikeycheck"
 
-# Check for valid API key 
+# Check for valid API key
 if [[ ! -f ${KEYCHECKFILE} ]]; then
 	# Return info message to syslog
 	ALERT="[pushbullet-image] Alert: No API key check since last reboot. Verifying API key ..."

@@ -73,7 +73,7 @@ fi
 APIKEY=$(cat ~/.pushbullet_apikey)
 KEYCHECKFILE="/tmp/.pushbullet_apikeycheck"
 
-# Check for valid API key 
+# Check for valid API key
 if [[ ! -f ${KEYCHECKFILE} ]]; then
 	# Return info message to syslog
 	ALERT="[pushbullet-image] Alert: No API key check since last reboot. Verifying API key ..."
@@ -118,16 +118,16 @@ do
 	SIGNATURE=$(echo $REQUESTUPLOAD | python -c 'import json,sys;obj=json.load(sys.stdin);print obj["data"]["signature"]')
 	POLICY=$(echo $REQUESTUPLOAD | python -c 'import json,sys;obj=json.load(sys.stdin);print obj["data"]["policy"]')
 	CONTENTTYPE=$(echo $REQUESTUPLOAD | python -c 'import json,sys;obj=json.load(sys.stdin);print obj["data"]["content-type"]')
-	
+
 	# Fire upoad request
 	curl -i -X POST https://s3.amazonaws.com/pushbullet-uploads \
-	  	-F awsaccesskeyid=${AWSKEY} \
-	  	-F acl=${ACL} \
-	  	-F key=${KEY} \
-	  	-F signature=${SIGNATURE} \
-	  	-F policy=${POLICY} \
-	  	-F content-type=${CONTENTTYPE} \
-	  	-F file=@${f}
+			-F awsaccesskeyid=${AWSKEY} \
+			-F acl=${ACL} \
+			-F key=${KEY} \
+			-F signature=${SIGNATURE} \
+			-F policy=${POLICY} \
+			-F content-type=${CONTENTTYPE} \
+			-F file=@${f}
 
 	# Fire push request
 	curl \
