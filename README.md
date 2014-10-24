@@ -28,7 +28,7 @@ You can find your API key in the [Account settings](https://www.pushbullet.com/a
 
 ## Version
 
-1.0.0
+1.0.1
 
 ## License
 
